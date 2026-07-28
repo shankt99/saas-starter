@@ -65,6 +65,7 @@ export async function createCustomerPortalSession(team: Team) {
     const prices = await stripe.prices.list({
       product: product.id,
       active: true,
+      type: 'recurring',
       limit: 100
     });
     if (prices.data.length === 0) {
