@@ -64,7 +64,8 @@ export async function createCustomerPortalSession(team: Team) {
 
     const prices = await stripe.prices.list({
       product: product.id,
-      active: true
+      active: true,
+      limit: 100
     });
     if (prices.data.length === 0) {
       throw new Error("No active prices found for the team's product");
@@ -150,7 +151,8 @@ export async function getStripePrices() {
   const prices = await stripe.prices.list({
     expand: ['data.product'],
     active: true,
-    type: 'recurring'
+    type: 'recurring',
+    limit: 100
   });
 
   return prices.data.map((price) => ({
