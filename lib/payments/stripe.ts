@@ -66,6 +66,7 @@ export async function createCustomerPortalSession(team: Team) {
       product: product.id,
       active: true,
       type: 'recurring',
+      currency: 'usd',
       limit: 100
     });
     if (prices.data.length === 0) {
@@ -153,6 +154,7 @@ export async function getStripePrices() {
     expand: ['data.product'],
     active: true,
     type: 'recurring',
+    currency: 'usd',
     limit: 100
   });
 
